@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Login to Storyblok:
 
-## Getting Started
+<sub style="color:lightblue;">When logging in, make sure to add the region (us).</sub>
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```shell
+npm run storyblok login
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Download the schema of your Storyblok components:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+npm run pull-sb-components
+```
+<sub style="color:lightblue;">If this command fails, logout and login again to Storyblok.</sub>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Generate TypeScript types based on the Storyblok downloaded schema:
 
-## Learn More
+```shell
+npm run generate-sb-types
+```
 
-To learn more about Next.js, take a look at the following resources:
+Remember to rerun the `pull-sb-components` and `generate-sb-types` scripts after you've made changes to your component schema in your Storyblok space.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<sub>In case of trouble look at this [documentation](https://github.com/storyblok/storyblok-cli)</sub>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Setup Storyblok local visual editor:
 
-## Deploy on Vercel
+1. Open your global terminal and install [homebrew](https://brew.sh/) if you don't have it
+2. Install mkcert:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```shell
+brew install mkcert
+mkcert -install
+mkcert localhost
+```
+3. Generate the local certificate:
+```shell
+sudo npm install -g local-ssl-proxy
+sudo local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem
+```

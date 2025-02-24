@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# storyblok
+components.1023195.json
+
 # testing
 /coverage
 

@@ -7,13 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "pull-sb-components": "storyblok pull-components --space 1023195",
+    "generate-sb-types": "storyblok generate-typescript-typedefs --sourceFilePaths ./components.1023195.json --destinationFilePath ./component-types-sb.d.ts"
   },
   "dependencies": {
+    "@storyblok/react": "^4.4.0",
     "next": "15.1.7",
     "prettier": "^3.5.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "storyblok": "^3.35.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
